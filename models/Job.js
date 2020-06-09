@@ -6,7 +6,7 @@ const jobSchema = new mongoose.Schema({
   status: String,
   employee: String,
   history: Array,
-  id: String,
+  jobNum: Number,
   date: { type: String, default: Date.now },
 });
 

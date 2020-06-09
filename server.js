@@ -18,6 +18,10 @@ app.use('/employee/create', require('./routes/employee/create'));
 app.use('/employee/delete', require('./routes/employee/delete'));
 
 // Job endpoints
+app.use('/jobs/', require('./routes/job/index'));
+app.use('/job/create', require('./routes/job/create'));
+app.use('/job/update', require('./routes/job/update'));
+app.use('/job/delete', require('./routes/job/delete'));
 
 // Serve static assets in production i.e. React
 if (process.env.NODE_ENV === 'production') {

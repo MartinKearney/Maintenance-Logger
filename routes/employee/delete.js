@@ -8,12 +8,10 @@ const Employee = require('../../models/Employee');
 router.delete('/:empNum', async (req, res) => {
   try {
     const { empNum } = req.params;
-    console.log(empNum);
     // attempt to find employee for deletion
     let employee = await Employee.findOne({
       employeeNumber: empNum,
     });
-    console.log(employee);
     if (!employee) return res.status(404).json({ msg: 'Employee not found' });
 
     // remove employee from database
