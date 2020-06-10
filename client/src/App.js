@@ -4,8 +4,11 @@ import store from './store';
 
 import SearchBar from './components/display/SearchBar';
 import ActionButton from './components/display/ActionButton';
+import AddJobModal from './components/jobs/AddJobModal';
+import EditJobModal from './components/jobs/EditJobModal';
 import AddEmployeeModal from './components/employees/AddEmployeeModal';
 import EmployeeListModal from './components/employees/EmployeeListModal';
+import Jobs from './components/jobs/Jobs';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -21,8 +24,11 @@ const App = () => {
         <SearchBar />
         <div className='container'>
           <ActionButton />
+          <AddJobModal />
+          <EditJobModal />
           <AddEmployeeModal />
           <EmployeeListModal />
+          <Jobs />
           <h1>Hello Danny!</h1>
         </div>
       </Fragment>
