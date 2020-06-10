@@ -16,7 +16,7 @@ const App = () => {
     <Provider store={store}>
       <Fragment>
         <SearchBar />
-        <div>
+        <div className='container'>
           <h1>Hello Danny!</h1>
         </div>
       </Fragment>
