@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useEffect, Fragment } from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css/dist/js/materialize.min.js';
 
 const App = () => {
-  return <h1>Hello</h1>;
+  useEffect(() => {
+    // Initializes Materialize JS
+    M.AutoInit();
+  }, []);
+  return (
+    <Provider store={store}>
+      <Fragment>
+        <div>
+          <h1>Hello Danny!</h1>
+        </div>
+      </Fragment>
+    </Provider>
+  );
 };
 
 export default App;
