@@ -5,10 +5,11 @@ export const getEmployees = () => async (dispatch) => {
 
     // const res = await fetch("/techs");
     // const data = await res.json();
+    const data = [];
 
     dispatch({
       type: 'GET_EMPLOYEES',
-      // payload: data,
+      payload: data,
     });
   } catch (err) {
     dispatch({
