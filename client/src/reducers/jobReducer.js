@@ -22,14 +22,14 @@ export default (state = initialState, action) => {
     case 'DELETE_JOB':
       return {
         ...state,
-        jobs: state.jobs.filter((job) => job.id !== action.payload),
+        jobs: state.jobs.filter((job) => job.jobNum !== action.payload),
         loading: false,
       };
     case 'UPDATE_JOB':
       return {
         ...state,
         jobs: state.jobs.map((job) =>
-          job.id === action.payload.id ? action.payload : job
+          job.jobNum === action.payload.jobNum ? action.payload : job
         ),
         loading: false,
       };

@@ -13,21 +13,22 @@ const Jobs = ({ job: { jobs, loading }, getJobs }) => {
   }, []);
 
   const getJobItemsArray = () => {
-    const itemsArray = jobs.map((job) => <JobItem key={job.id} job={job} />);
+    const itemsArray = jobs.map((job) => (
+      <JobItem key={job.jobNum} job={job} />
+    ));
     return itemsArray;
   };
 
   if (loading || jobs === null) {
-    // return <Preloader />;
-    return null;
+    return <Preloader />;
   }
   return (
     <ul className='collection with-header'>
       <li className='collection-header'>
-        <h4 className='center'>System Jobs</h4>
+        <h4 className='center'>System Logs</h4>
       </li>
       {!loading && jobs.length === 0 ? (
-        <p className='center'>No jobs to show...</p>
+        <p className='center'>No logs to show...</p>
       ) : (
         getJobItemsArray()
       )}

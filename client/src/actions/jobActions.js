@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 //Get Jobs from database
 export const getJobs = () => async (dispatch) => {
   try {
@@ -6,9 +8,12 @@ export const getJobs = () => async (dispatch) => {
     // const res = await fetch("/logs");
     // const data = await res.json();
 
+    const res = await axios.get('/jobs');
+    const data = res.data;
+
     dispatch({
-      type: 'GET_JOGS',
-      // payload: data,
+      type: 'GET_JOBS',
+      payload: data,
     });
   } catch (err) {
     dispatch({
@@ -18,23 +23,15 @@ export const getJobs = () => async (dispatch) => {
   }
 };
 
-// Add new job to database
 export const addJob = (job) => async (dispatch) => {
   try {
     setLoading();
 
-    // const res = await fetch("/logs", {
-    //   method: "POST",
-    //   body: JSON.stringify(log),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // const data = await res.json();
+    await axios.post('/job/create', job);
 
     dispatch({
       type: 'ADD_JOB',
-      // payload: data,
+      payload: job,
     });
   } catch (err) {
     dispatch({
@@ -45,17 +42,15 @@ export const addJob = (job) => async (dispatch) => {
 };
 
 // Delete job from database
-export const deleteJob = (id) => async (dispatch) => {
+export const deleteJob = (jobNum) => async (dispatch) => {
   try {
     setLoading();
 
-    // await fetch(`/logs/${id}`, {
-    //   method: "DELETE",
-    // });
+    await axios.delete(`/job/delete/${jobNum}`);
 
     dispatch({
       type: 'DELETE_JOB',
-      payload: id,
+      payload: jobNum,
     });
   } catch (err) {
     dispatch({

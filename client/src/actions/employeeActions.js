@@ -21,21 +21,19 @@ export const getEmployees = () => async (dispatch) => {
 };
 
 // Add employee to database
-export const addEmployee = ({ firstName, lastName, employeeNumber }) => async (
-  dispatch
-) => {
+export const addEmployee = (employee) => async (dispatch) => {
   try {
     setLoading();
 
-    await axios.post('/employee/create', {
-      firstName,
-      lastName,
-      employeeNumber,
-    });
+    const res = await axios.post('/employee/create', employee);
+    // extract employee number from response
+    const employeeNumber = res.data.empNum;
+    // combine employee with employee number to make the new employee object
+    const newEmployee = { ...employee, employeeNumber };
 
     dispatch({
       type: 'ADD_EMPLOYEE',
-      payload: { firstName, lastName, employeeNumber },
+      payload: newEmployee,
     });
   } catch (err) {
     dispatch({

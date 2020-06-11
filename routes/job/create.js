@@ -6,8 +6,6 @@ const Job = require('../../models/Job');
 // @desc      Create a new job record
 
 router.post('/', async (req, res) => {
-  console.log(req.body);
-
   // Destrcuture request
   const { title, description, status, employee } = req.body;
 

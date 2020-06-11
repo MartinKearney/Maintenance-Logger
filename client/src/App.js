@@ -29,7 +29,6 @@ const App = () => {
           <AddEmployeeModal />
           <EmployeeListModal />
           <Jobs />
-          <h1>Hello Danny!</h1>
         </div>
       </Fragment>
     </Provider>

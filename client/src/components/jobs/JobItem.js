@@ -9,7 +9,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 
 const JobItem = ({ job, deleteJob, setCurrent }) => {
   const getTextColor = () => {
-    return job.attention ? redText() : blueText();
+    return job.status ? redText() : blueText();
   };
 
   const redText = () => 'red-text';
@@ -17,7 +17,7 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
   const blueText = () => 'blue-text';
 
   const onDelete = () => {
-    deleteJob(job.id);
+    deleteJob(job.jobNum);
     M.toast({ html: 'Job Deleted' });
   };
 
@@ -29,11 +29,11 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
           className={`modal-trigger ${getTextColor()}`}
           onClick={() => setCurrent(job)}
         >
-          {job.message}
+          {job.title}
         </a>
         <br />
         <span className='grey-text'>
-          <span className='black-text'>ID #{job.id}</span> last updated by{' '}
+          <span className='black-text'>ID #{job.jobNum}</span> last updated by{' '}
           <span className='black-text'>{job.employee}</span> on{' '}
           <Moment format='MMMM Do YYYY, h:mm:ssa'>{job.date}</Moment>
         </span>

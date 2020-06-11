@@ -6,8 +6,6 @@ const Job = require('../../models/Job');
 // @desc      Get all job details
 
 router.get('/', async (req, res) => {
-  console.log(req.body);
-
   try {
     const jobs = await Job.find();
     res.json(jobs);

@@ -7,21 +7,23 @@ import { addJob } from '../../actions/jobActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const AddJobModal = ({ addJob }) => {
-  const [message, setMessage] = useState('');
-  const [attention, setAttention] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState(false);
   const [employee, setEmployee] = useState('');
 
   const onSubmit = () => {
-    if (message === '' || employee === '') {
+    if (title === '' || description === '' || employee === '') {
       // toast displayed and modal stays open
       M.toast({ html: 'Please enter a message and an employee' });
     } else {
       // form input valid
-      console.log(message, employee, attention);
+      console.log(title, description, status, employee);
       // create a new log
       const newJob = {
-        message,
-        attention,
+        title,
+        description,
+        status,
         employee,
         date: new Date(),
       };
@@ -29,9 +31,10 @@ const AddJobModal = ({ addJob }) => {
       addJob(newJob);
       M.toast({ html: `Job added by ${employee}` });
       // empty form fields i.e. reset the state
-      setMessage('');
+      setTitle('');
+      setDescription('');
       setEmployee('');
-      setAttention(false);
+      setStatus(false);
       // close the modal
       let formModal = document.getElementById('add-job-modal');
       let instance = M.Modal.getInstance(formModal);
@@ -48,12 +51,26 @@ const AddJobModal = ({ addJob }) => {
           <div className='input-field'>
             <input
               type='text'
-              name='message'
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              name='title'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
-            <label htmlFor='message' className='active'>
-              Job Message
+            <label htmlFor='title' className='active'>
+              Job Title
+            </label>
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='input-field'>
+            <input
+              type='text'
+              name='description'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <label htmlFor='description' className='active'>
+              Job Description
             </label>
           </div>
         </div>
@@ -81,11 +98,11 @@ const AddJobModal = ({ addJob }) => {
                 <input
                   type='checkbox'
                   className='filled-in'
-                  checked={attention}
-                  value={attention}
-                  onChange={(e) => setAttention(!attention)}
+                  checked={status}
+                  value={status}
+                  onChange={(e) => setStatus(!status)}
                 />
-                <span>Needs Attention</span>
+                <span>Set Status</span>
               </label>
             </p>
           </div>
