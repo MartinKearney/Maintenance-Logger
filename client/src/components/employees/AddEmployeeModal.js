@@ -5,16 +5,32 @@ import { addEmployee } from '../../actions/employeeActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const AddEmployeeModal = ({ addEmployee }) => {
+const AddEmployeeModal = ({ addEmployee, employees }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+
+  const getNextId = () => {
+    if (employees.length === 0) {
+      return 1;
+    } else {
+      let largest = 1;
+      employees.forEach((emp) => {
+        if (emp.employeeNumber > largest) {
+          largest = emp.employeeNumber;
+        }
+      });
+      // set new number to one greater than largest
+      return largest + 1;
+    }
+  };
 
   const onSubmit = () => {
     if (firstName === '' || lastName === '') {
       // toast displayed and modal stays open
       M.toast({ html: 'Please enter the first and last name' });
     } else {
-      addEmployee({ firstName, lastName });
+      const employeeNumber = getNextId();
+      addEmployee({ firstName, lastName, employeeNumber });
       M.toast({ html: `${firstName} ${lastName} was added as an employee` });
       // empty fields for form i.e. reset the state
       setFirstName('');
@@ -78,4 +94,8 @@ AddEmployeeModal.propTypes = {
   addEmployee: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addEmployee })(AddEmployeeModal);
+const mapStateToProps = (state) => ({
+  employees: state.employee.employees,
+});
+
+export default connect(mapStateToProps, { addEmployee })(AddEmployeeModal);

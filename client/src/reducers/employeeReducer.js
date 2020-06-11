@@ -21,7 +21,9 @@ export default (state = initialState, action) => {
     case 'DELETE_EMPLOYEE':
       return {
         ...state,
-        employees: state.employees.filter((emp) => emp.id !== action.payload),
+        employees: state.employees.filter(
+          (emp) => emp.employeeNumber !== action.payload
+        ),
         loading: false,
       };
     case 'SET_LOADING':

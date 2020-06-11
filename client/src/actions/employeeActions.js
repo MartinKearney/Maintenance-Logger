@@ -1,11 +1,12 @@
+import axios from 'axios';
+
 // Get employees from database
 export const getEmployees = () => async (dispatch) => {
   try {
     setLoading();
 
-    // const res = await fetch("/techs");
-    // const data = await res.json();
-    const data = [];
+    const res = await axios.get('/employees');
+    const data = res.data;
 
     dispatch({
       type: 'GET_EMPLOYEES',
@@ -20,22 +21,21 @@ export const getEmployees = () => async (dispatch) => {
 };
 
 // Add employee to database
-export const addEmployee = (employee) => async (dispatch) => {
+export const addEmployee = ({ firstName, lastName, employeeNumber }) => async (
+  dispatch
+) => {
   try {
     setLoading();
 
-    // const res = await fetch("/techs", {
-    //   method: "POST",
-    //   body: JSON.stringify(tech),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // const data = await res.json();
+    await axios.post('/employee/create', {
+      firstName,
+      lastName,
+      employeeNumber,
+    });
 
     dispatch({
       type: 'ADD_EMPLOYEE',
-      // payload: data,
+      payload: { firstName, lastName, employeeNumber },
     });
   } catch (err) {
     dispatch({
@@ -46,17 +46,15 @@ export const addEmployee = (employee) => async (dispatch) => {
 };
 
 // Delete employee from database
-export const deleteEmployee = (id) => async (dispatch) => {
+export const deleteEmployee = (employeeNumber) => async (dispatch) => {
   try {
     setLoading();
 
-    // await fetch(`/techs/${id}`, {
-    //   method: "DELETE",
-    // });
+    await axios.delete(`/employee/delete/${employeeNumber}`);
 
     dispatch({
       type: 'DELETE_EMPLOYEE',
-      payload: id,
+      payload: employeeNumber,
     });
   } catch (err) {
     dispatch({
@@ -65,6 +63,7 @@ export const deleteEmployee = (id) => async (dispatch) => {
     });
   }
 };
+
 // Set loading to true
 export const setLoading = () => {
   return {

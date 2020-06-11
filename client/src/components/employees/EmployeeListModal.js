@@ -25,7 +25,7 @@ const EmployeeListModal = ({
           {!loading &&
             employees !== null &&
             employees.map((employee) => (
-              <EmployeeItem key={employee.id} employee={employee} />
+              <EmployeeItem key={employee.employeeNumber} employee={employee} />
             ))}
         </ul>
       </div>

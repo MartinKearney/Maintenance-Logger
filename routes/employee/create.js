@@ -9,35 +9,13 @@ router.post('/', async (req, res) => {
   console.log(req.body);
 
   // Destrcuture request
-  const { firstName, lastName } = req.body;
+  const { firstName, lastName, employeeNumber } = req.body;
 
   try {
     // Check if employee exists already
     let employee = await Employee.findOne({ firstName, lastName });
     if (employee) {
       return res.status(400).json({ msg: 'Employee already exists' });
-    }
-
-    // Generate an employee number
-    let employeeNumber;
-
-    // get all employees
-    const employees = await Employee.find();
-
-    // if none then number is 1
-    if (employees.length === 0) {
-      employeeNumber = 1;
-    }
-    // else loop through all employees to find largest
-    else {
-      let largest = 1;
-      employees.forEach((emp) => {
-        if (emp.employeeNumber > largest) {
-          largest = emp.employeeNumber;
-        }
-      });
-      // set new number to one greater than largest
-      employeeNumber = largest + 1;
     }
 
     // create a new document 'employee' by using the model 'Employee'

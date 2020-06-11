@@ -7,5 +7,4 @@ const employeeSchema = new mongoose.Schema({
   date: { type: String, default: Date.now },
 });
 
-// Check that a collection called 'employees' is created
 module.exports = mongoose.model('Employee', employeeSchema);

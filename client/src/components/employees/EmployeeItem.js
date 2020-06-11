@@ -5,17 +5,17 @@ import { deleteEmployee } from '../../actions/employeeActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EmployeeItem = ({
-  employee: { firstName, lastName, id },
+  employee: { firstName, lastName, employeeNumber },
   deleteEmployee,
 }) => {
   const onDelete = () => {
-    deleteEmployee(id);
+    deleteEmployee(employeeNumber);
     M.toast({ html: 'Employee deleted' });
   };
   return (
     <li className='collection-item'>
       <div>
-        {firstName} {lastName}
+        #{employeeNumber} - {firstName} {lastName}
         <a href='#!' className='secondary-content' onClick={onDelete}>
           <i className='material-icons grey-text'>delete</i>
         </a>
