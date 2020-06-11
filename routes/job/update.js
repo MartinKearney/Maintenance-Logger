@@ -50,7 +50,12 @@ router.put('/:jobNum', async (req, res) => {
       { $set: updatedJobFields },
       { new: false }
     );
-    res.json(job);
+
+    // get reference to updated job
+    const newJob = await Job.findOne({ jobNum });
+
+    // send the fully updated job back to the client
+    res.json(newJob);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

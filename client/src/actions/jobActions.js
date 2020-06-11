@@ -5,9 +5,6 @@ export const getJobs = () => async (dispatch) => {
   try {
     setLoading();
 
-    // const res = await fetch("/logs");
-    // const data = await res.json();
-
     const res = await axios.get('/jobs');
     const data = res.data;
 
@@ -18,7 +15,7 @@ export const getJobs = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'JOBS_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };
@@ -27,16 +24,17 @@ export const addJob = (job) => async (dispatch) => {
   try {
     setLoading();
 
-    await axios.post('/job/create', job);
-
+    const res = await axios.post('/job/create', job);
+    const jobNum = res.data.jobNum;
+    const newJob = { ...job, jobNum };
     dispatch({
       type: 'ADD_JOB',
-      payload: job,
+      payload: newJob,
     });
   } catch (err) {
     dispatch({
       type: 'JOBS_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };
@@ -55,7 +53,7 @@ export const deleteJob = (jobNum) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'JOBS_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };
@@ -65,23 +63,16 @@ export const updateJob = (job) => async (dispatch) => {
   try {
     setLoading();
 
-    // const res = await fetch(`/logs/${log.id}`, {
-    //   method: "PUT",
-    //   body: JSON.stringify(log),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // const data = await res.json();
-
+    const res = await axios.put(`/job/update/${job.jobNum}`, job);
+    const newJob = res.data;
     dispatch({
       type: 'UPDATE_JOB',
-      // payload: data,
+      payload: newJob,
     });
   } catch (err) {
     dispatch({
       type: 'JOBS_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };
@@ -101,7 +92,7 @@ export const searchJobs = (text) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'JOBS_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };

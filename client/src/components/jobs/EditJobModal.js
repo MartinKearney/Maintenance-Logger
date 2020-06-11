@@ -6,31 +6,32 @@ import EmployeeSelectOptions from '../employees/EmployeeSelectOptions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EditJobModal = ({ current, updateJob }) => {
-  const [message, setMessage] = useState('');
-  const [attention, setAttention] = useState(false);
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [status, setStatus] = useState(false);
   const [employee, setEmployee] = useState('');
 
   useEffect(() => {
     if (current) {
-      setMessage(current.message);
-      setAttention(current.attention);
+      setTitle(current.title);
+      setDescription(current.description);
+      setStatus(current.status);
       setEmployee(current.employee);
     }
   }, [current]);
 
   const onSubmit = () => {
-    if (message === '' || employee === '') {
+    if (description === '' || employee === '') {
       // toast displayed and modal stays open
-      M.toast({ html: 'Please enter a message and an employee' });
+      M.toast({ html: 'Please enter an updated description and an employee' });
     } else {
       // form input valid
 
       const updJob = {
-        id: current.id,
-        message,
-        attention,
+        jobNum: current.jobNum,
+        description,
+        status,
         employee,
-        date: new Date(),
       };
       updateJob(updJob);
       M.toast({ html: `Job updated by ${employee}` });
@@ -49,14 +50,14 @@ const EditJobModal = ({ current, updateJob }) => {
     <div id='edit-job-modal' className='modal' style={modalStyle}>
       <div className='modal-content'>
         <h4>Edit System Job</h4>
-
+        <h5>{title}</h5>
         <div className='row'>
           <div className='input-field'>
             <input
               type='text'
-              name='message'
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              name='description'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
         </div>
@@ -84,9 +85,9 @@ const EditJobModal = ({ current, updateJob }) => {
                 <input
                   type='checkbox'
                   className='filled-in'
-                  checked={attention}
-                  value={attention}
-                  onChange={(e) => setAttention(!attention)}
+                  checked={status}
+                  value={status}
+                  onChange={(e) => setStatus(!status)}
                 />
                 <span>Needs Attention</span>
               </label>

@@ -8,13 +8,13 @@ const Job = require('../../models/Job');
 router.post('/', async (req, res) => {
   // Destrcuture request
   const { title, description, status, employee } = req.body;
-
+  let jobNum;
   try {
     // check if job already exists? maybe not needed!
 
     // construct remaining fields for job creation
     const history = [];
-    let jobNum;
+
     // get all jobs
     const jobs = await Job.find();
 
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
-  return res.status(200).json({ msg: 'New Job Created!' });
+  return res.status(200).json({ msg: 'New Job Created!', jobNum });
 });
 
 module.exports = router;

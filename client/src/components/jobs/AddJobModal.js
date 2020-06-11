@@ -15,17 +15,15 @@ const AddJobModal = ({ addJob }) => {
   const onSubmit = () => {
     if (title === '' || description === '' || employee === '') {
       // toast displayed and modal stays open
-      M.toast({ html: 'Please enter a message and an employee' });
+      M.toast({ html: 'Please enter a title, a description and an employee' });
     } else {
       // form input valid
-      console.log(title, description, status, employee);
-      // create a new log
+      // create a new job
       const newJob = {
         title,
         description,
         status,
         employee,
-        date: new Date(),
       };
       // pass new job to redux action from props
       addJob(newJob);
