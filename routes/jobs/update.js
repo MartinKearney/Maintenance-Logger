@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Job = require('../../models/Job');
 
-// @route   DELETE job/update/:id
+// @route   DELETE jobs/update/:id
 // @desc    Delete a job
 
 router.put('/:jobNum', async (req, res) => {

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Employee = require('../../models/Employee');
 
-// @route   DELETE employee/delete/:id
+// @route   DELETE employees/delete/:id
 // @desc    Delete a contact
 
 router.delete('/:empNum', async (req, res) => {

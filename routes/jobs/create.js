@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Job = require('../../models/Job');
 
-// @route     Post /job/create
+// @route     Post /jobs/create
 // @desc      Create a new job record
 
 router.post('/', async (req, res) => {
