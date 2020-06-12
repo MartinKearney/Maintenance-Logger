@@ -37,9 +37,9 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
           <span className='black-text'>{job.employee}</span> on{' '}
           <Moment format='MMMM Do YYYY, h:mm:ssa'>{job.date}</Moment>
         </span>
-        <a href='#!' className='secondary-content' onClick={onDelete}>
+        <span className='secondary-content delete-icon' onClick={onDelete}>
           <i className='material-icons grey-text'>delete</i>
-        </a>
+        </span>
       </div>
     </li>
   );

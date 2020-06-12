@@ -16,9 +16,12 @@ const EmployeeItem = ({
     <li className='collection-item'>
       <div>
         #{employeeNumber} - {firstName} {lastName}
-        <a href='#!' className='secondary-content' onClick={onDelete}>
+        {/* <a href='#!' className='secondary-content' onClick={onDelete}>
           <i className='material-icons grey-text'>delete</i>
-        </a>
+        </a> */}
+        <span className='secondary-content delete-icon' onClick={onDelete}>
+          <i className='material-icons grey-text'>delete</i>
+        </span>
       </div>
     </li>
   );

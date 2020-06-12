@@ -62,13 +62,9 @@ const AddEmployeeModal = ({ addEmployee }) => {
       </div>
       <div className='modal-footer'>
         {/* modal-close removed from below */}
-        <a
-          href='#!'
-          onClick={onSubmit}
-          className='btn waves-effect waves-light blue'
-        >
+        <span onClick={onSubmit} className='btn waves-effect waves-light blue'>
           Enter
-        </a>
+        </span>
       </div>
     </div>
   );
