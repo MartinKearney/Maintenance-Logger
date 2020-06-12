@@ -5,7 +5,7 @@ export const getJobs = () => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.get('/jobs');
+    const res = await axios.get('/jobs/get-all');
     const data = res.data;
 
     dispatch({
@@ -24,7 +24,7 @@ export const addJob = (job) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.post('/job/create', job);
+    const res = await axios.post('/jobs/create', job);
     const jobNum = res.data.jobNum;
     const newJob = { ...job, jobNum };
     dispatch({
@@ -44,7 +44,7 @@ export const deleteJob = (jobNum) => async (dispatch) => {
   try {
     setLoading();
 
-    await axios.delete(`/job/delete/${jobNum}`);
+    await axios.delete(`/jobs/delete/${jobNum}`);
 
     dispatch({
       type: 'DELETE_JOB',
@@ -63,7 +63,7 @@ export const updateJob = (job) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.put(`/job/update/${job.jobNum}`, job);
+    const res = await axios.put(`/jobs/update/${job.jobNum}`, job);
     const newJob = res.data;
     dispatch({
       type: 'UPDATE_JOB',
@@ -84,12 +84,12 @@ export const searchJobs = (text) => async (dispatch) => {
 
     // will need to add in a route for searching jobs
     // probably a get request to /jobs/search/${text}
-    const res = await axios.get(`/jobs?q=${text}`);
-    const data = res.data;
+    // const res = await axios.get(`/jobs?q=${text}`);
+    // const data = res.data;
 
     dispatch({
       type: 'SEARCH_JOBS',
-      payload: data,
+      // payload: data,
     });
   } catch (err) {
     dispatch({

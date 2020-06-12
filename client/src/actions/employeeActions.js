@@ -5,7 +5,7 @@ export const getEmployees = () => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.get('/employees');
+    const res = await axios.get('/employees/get-all');
     const data = res.data;
 
     dispatch({
@@ -25,7 +25,7 @@ export const addEmployee = (employee) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await axios.post('/employee/create', employee);
+    const res = await axios.post('/employees/create', employee);
     // extract employee number from response
     const employeeNumber = res.data.empNum;
     // combine employee with employee number to make the new employee object
@@ -48,7 +48,7 @@ export const deleteEmployee = (employeeNumber) => async (dispatch) => {
   try {
     setLoading();
 
-    await axios.delete(`/employee/delete/${employeeNumber}`);
+    await axios.delete(`/employees/delete/${employeeNumber}`);
 
     dispatch({
       type: 'DELETE_EMPLOYEE',
