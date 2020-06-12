@@ -82,8 +82,10 @@ export const searchJobs = (text) => async (dispatch) => {
   try {
     setLoading();
 
-    const res = await fetch(`/logs?q=${text}`);
-    const data = await res.json();
+    // will need to add in a route for searching jobs
+    // probably a get request to /jobs/search/${text}
+    const res = await axios.get(`/jobs?q=${text}`);
+    const data = res.data;
 
     dispatch({
       type: 'SEARCH_JOBS',
