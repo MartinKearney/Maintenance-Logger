@@ -8,7 +8,7 @@ const Job = require('../../models/Job');
 router.post('/', async (req, res) => {
   // Destrcuture request
   const { title, description, status, employee } = req.body;
-  let jobNum;
+  let jobNum, date;
   try {
     // check if job already exists? maybe not needed!
 
@@ -45,12 +45,13 @@ router.post('/', async (req, res) => {
     });
 
     // save the document to the db
-    await job.save();
+    const res = await job.save();
+    date = res.date;
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
-  return res.status(200).json({ msg: 'New Job Created!', jobNum });
+  return res.status(200).json({ msg: 'New Job Created!', jobNum, date });
 });
 
 module.exports = router;

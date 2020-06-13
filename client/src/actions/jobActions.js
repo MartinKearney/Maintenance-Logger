@@ -26,7 +26,8 @@ export const addJob = (job) => async (dispatch) => {
 
     const res = await axios.post('/jobs/create', job);
     const jobNum = res.data.jobNum;
-    const newJob = { ...job, jobNum };
+    const date = res.data.date;
+    const newJob = { ...job, jobNum, date };
     dispatch({
       type: 'ADD_JOB',
       payload: newJob,

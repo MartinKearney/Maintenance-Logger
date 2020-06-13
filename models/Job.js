@@ -7,7 +7,7 @@ const jobSchema = new mongoose.Schema({
   employee: String,
   history: Array,
   jobNum: Number,
-  date: { type: String, default: Date.now },
+  date: { type: String, default: Date.now() },
 });
 
 // Check that a collection called 'jobs' is created

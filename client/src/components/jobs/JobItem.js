@@ -8,6 +8,8 @@ import { deleteJob, setCurrent } from '../../actions/jobActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const JobItem = ({ job, deleteJob, setCurrent }) => {
+  console.log(job.date);
+
   const getTextColor = () => {
     return job.status ? redText() : blueText();
   };
