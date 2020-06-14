@@ -17,9 +17,9 @@ const JobItem = ({
       case 'Needs Attention':
         return 'red-text';
       case 'In Progress':
-        return 'green-text';
+        return 'orange-text';
       case 'Resolved':
-        return 'blue-text';
+        return 'green-text';
       default:
         return 'black-text';
     }

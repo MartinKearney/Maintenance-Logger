@@ -1,19 +1,6 @@
 import React from 'react';
 
-// import {useEffect} from 'react';
-// import M from "materialize-css/dist/js/materialize.min.js";
-
 const AddBtn = () => {
-  // useEffect(() => {
-  //   const options = {
-  //     direction: "left",
-  //   };
-  //   const elems = document.querySelectorAll(".fixed-action-btn");
-  //   let instance = M.FloatingActionButton.init(elems, options);
-  //   // what does the line below do?
-  //   return () => instance.destroy();
-  // }, []);
-
   return (
     <div className='fixed-action-btn'>
       <a

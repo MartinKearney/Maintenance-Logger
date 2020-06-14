@@ -12,7 +12,7 @@ const AddJobModal = ({ addJob }) => {
   const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (title === '') {
       M.toast({ html: 'Please enter a title' });
     } else if (description === '') {
@@ -38,11 +38,21 @@ const AddJobModal = ({ addJob }) => {
       setDescription('');
       setEmployee('');
       setStatus('');
+      resetStatusOptions();
       // close the modal
       let formModal = document.getElementById('add-job-modal');
       let instance = M.Modal.getInstance(formModal);
       instance.close();
     }
+  };
+
+  const resetStatusOptions = () => {
+    let options = [...document.getElementsByClassName('status-option')];
+    options.forEach((op) => {
+      if (op.checked) {
+        op.checked = false;
+      }
+    });
   };
 
   return (
@@ -94,55 +104,39 @@ const AddJobModal = ({ addJob }) => {
           </div>
         </div>
 
-        {/* <div className='row'>
-          <div className='input-field'>
-            <p>
-              <label>
-                <input
-                  type='checkbox'
-                  className='filled-in'
-                  checked={status}
-                  value={status}
-                  onChange={(e) => setStatus(!status)}
-                />
-                <span>Set Status</span>
-              </label>
-            </p>
-          </div>
-        </div> */}
         <div className='row'>
           <p>Set Status</p>
           <div
             className='input-field'
             onChange={(e) => setStatus(e.target.value)}
           >
-            <span>
+            <span className='status-span'>
               <label>
                 <input
                   type='radio'
-                  className='with-gap'
+                  className='with-gap status-option'
                   name='status'
                   value='Needs Attention'
                 />
                 <span>Needs Attention</span>
               </label>
             </span>
-            <span>
+            <span className='status-span'>
               <label>
                 <input
                   type='radio'
-                  className='with-gap'
+                  className='with-gap status-option'
                   name='status'
                   value='In Progress'
                 />
                 <span>In Progress</span>
               </label>
             </span>
-            <span>
+            <span className='status-span'>
               <label>
                 <input
                   type='radio'
-                  className='with-gap'
+                  className='with-gap status-option'
                   name='status'
                   value='Resolved'
                 />

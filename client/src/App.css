@@ -1,3 +1,7 @@
 .delete-icon:hover {
   cursor: pointer;
 }
+
+.status-span {
+  margin-right: 3rem;
+}
