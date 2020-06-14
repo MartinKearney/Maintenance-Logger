@@ -8,8 +8,6 @@ import { deleteJob, setCurrent } from '../../actions/jobActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const JobItem = ({ job, deleteJob, setCurrent }) => {
-  console.log(job.date);
-
   const getTextColor = () => {
     return job.status ? redText() : blueText();
   };
@@ -17,6 +15,10 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
   const redText = () => 'red-text';
 
   const blueText = () => 'blue-text';
+
+  const getDateString = (d) => {
+    return new Date(parseInt(d)).toUTCString().slice(0, -4);
+  };
 
   const onDelete = () => {
     deleteJob(job.jobNum);
@@ -37,7 +39,8 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
         <span className='grey-text'>
           <span className='black-text'>ID #{job.jobNum}</span> last updated by{' '}
           <span className='black-text'>{job.employee}</span> on{' '}
-          <Moment format='MMMM Do YYYY, h:mm:ssa'>{job.date}</Moment>
+          <span>{getDateString(job.date)}</span>
+          {/* <Moment format='MMMM Do YYYY, h:mm:ssa'>{job.date}</Moment> */}
         </span>
         <span className='secondary-content delete-icon' onClick={onDelete}>
           <i className='material-icons grey-text'>delete</i>
