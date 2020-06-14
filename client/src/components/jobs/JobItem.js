@@ -7,9 +7,14 @@ import { deleteJob, setCurrent } from '../../actions/jobActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const JobItem = ({ job, deleteJob, setCurrent }) => {
+const JobItem = ({
+  job,
+  job: { jobNum, employee, status, date },
+  deleteJob,
+  setCurrent,
+}) => {
   const getTextColor = () => {
-    return job.status ? redText() : blueText();
+    return status ? redText() : blueText();
   };
 
   const redText = () => 'red-text';
@@ -21,7 +26,7 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
   };
 
   const onDelete = () => {
-    deleteJob(job.jobNum);
+    deleteJob(jobNum);
     M.toast({ html: 'Job Deleted' });
   };
 
@@ -37,10 +42,9 @@ const JobItem = ({ job, deleteJob, setCurrent }) => {
         </a>
         <br />
         <span className='grey-text'>
-          <span className='black-text'>ID #{job.jobNum}</span> last updated by{' '}
-          <span className='black-text'>{job.employee}</span> on{' '}
-          <span>{getDateString(job.date)}</span>
-          {/* <Moment format='MMMM Do YYYY, h:mm:ssa'>{job.date}</Moment> */}
+          <span className='black-text'>ID #{jobNum}</span> last updated by{' '}
+          <span className='black-text'>{employee}</span> on{' '}
+          <span className='black-text'>{getDateString(date)}</span>
         </span>
         <span className='secondary-content delete-icon' onClick={onDelete}>
           <i className='material-icons grey-text'>delete</i>
