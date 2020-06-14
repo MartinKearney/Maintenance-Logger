@@ -1,5 +1,4 @@
 import React from 'react';
-import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -21,8 +20,8 @@ const JobItem = ({
 
   const blueText = () => 'blue-text';
 
-  const getDateString = (d) => {
-    return new Date(parseInt(d)).toUTCString().slice(0, -4);
+  const getDateString = () => {
+    return new Date(parseInt(date)).toUTCString().slice(0, -4);
   };
 
   const onDelete = () => {
@@ -44,7 +43,7 @@ const JobItem = ({
         <span className='grey-text'>
           <span className='black-text'>ID #{jobNum}</span> last updated by{' '}
           <span className='black-text'>{employee}</span> on{' '}
-          <span className='black-text'>{getDateString(date)}</span>
+          <span className='black-text'>{getDateString()}</span>
         </span>
         <span className='secondary-content delete-icon' onClick={onDelete}>
           <i className='material-icons grey-text'>delete</i>
