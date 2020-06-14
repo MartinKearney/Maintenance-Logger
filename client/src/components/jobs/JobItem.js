@@ -13,12 +13,17 @@ const JobItem = ({
   setCurrent,
 }) => {
   const getTextColor = () => {
-    return status ? redText() : blueText();
+    switch (status) {
+      case 'Needs Attention':
+        return 'red-text';
+      case 'In Progress':
+        return 'green-text';
+      case 'Resolved':
+        return 'blue-text';
+      default:
+        return 'black-text';
+    }
   };
-
-  const redText = () => 'red-text';
-
-  const blueText = () => 'blue-text';
 
   const getDateString = () => {
     return new Date(parseInt(date)).toUTCString().slice(0, -4);

@@ -3,11 +3,11 @@ const mongoose = require('mongoose');
 const jobSchema = new mongoose.Schema({
   title: String,
   description: String,
-  status: Boolean,
+  status: String,
   employee: String,
   history: Array,
   jobNum: Number,
-  date: { type: String, default: Date.now() },
+  date: { type: String, default: Date.now },
 });
 
 // Check that a collection called 'jobs' is created

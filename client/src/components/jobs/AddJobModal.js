@@ -9,21 +9,26 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 const AddJobModal = ({ addJob }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
 
   const onSubmit = () => {
-    if (title === '' || description === '' || employee === '') {
-      // toast displayed and modal stays open
-      M.toast({ html: 'Please enter a title, a description and an employee' });
+    if (title === '') {
+      M.toast({ html: 'Please enter a title' });
+    } else if (description === '') {
+      M.toast({ html: 'Please enter a description' });
+    } else if (employee === '') {
+      M.toast({ html: 'Please enter an employee' });
+    } else if (status === '') {
+      M.toast({ html: 'Please set the status' });
     } else {
       // form input valid
       // create a new job
       const newJob = {
         title,
         description,
-        status,
         employee,
+        status,
       };
       // pass new job to redux action from props
       addJob(newJob);
@@ -32,7 +37,7 @@ const AddJobModal = ({ addJob }) => {
       setTitle('');
       setDescription('');
       setEmployee('');
-      setStatus(false);
+      setStatus('');
       // close the modal
       let formModal = document.getElementById('add-job-modal');
       let instance = M.Modal.getInstance(formModal);
@@ -43,7 +48,7 @@ const AddJobModal = ({ addJob }) => {
   return (
     <div id='add-job-modal' className='modal' style={modalStyle}>
       <div className='modal-content'>
-        <h4>Enter System Job</h4>
+        <h4>Add System Job</h4>
 
         <div className='row'>
           <div className='input-field'>
@@ -89,7 +94,7 @@ const AddJobModal = ({ addJob }) => {
           </div>
         </div>
 
-        <div className='row'>
+        {/* <div className='row'>
           <div className='input-field'>
             <p>
               <label>
@@ -103,6 +108,47 @@ const AddJobModal = ({ addJob }) => {
                 <span>Set Status</span>
               </label>
             </p>
+          </div>
+        </div> */}
+        <div className='row'>
+          <p>Set Status</p>
+          <div
+            className='input-field'
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <span>
+              <label>
+                <input
+                  type='radio'
+                  className='with-gap'
+                  name='status'
+                  value='Needs Attention'
+                />
+                <span>Needs Attention</span>
+              </label>
+            </span>
+            <span>
+              <label>
+                <input
+                  type='radio'
+                  className='with-gap'
+                  name='status'
+                  value='In Progress'
+                />
+                <span>In Progress</span>
+              </label>
+            </span>
+            <span>
+              <label>
+                <input
+                  type='radio'
+                  className='with-gap'
+                  name='status'
+                  value='Resolved'
+                />
+                <span>Resolved</span>
+              </label>
+            </span>
           </div>
         </div>
       </div>

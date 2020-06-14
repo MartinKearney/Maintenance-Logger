@@ -8,7 +8,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 const EditJobModal = ({ current, updateJob }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const EditJobModal = ({ current, updateJob }) => {
           </div>
         </div>
 
-        <div className='row'>
+        {/* <div className='row'>
           <div className='input-field'>
             <p>
               <label>
@@ -92,6 +92,47 @@ const EditJobModal = ({ current, updateJob }) => {
                 <span>Needs Attention</span>
               </label>
             </p>
+          </div>
+        </div> */}
+        <div className='row'>
+          <p>Set Status</p>
+          <div
+            className='input-field'
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <span>
+              <label>
+                <input
+                  type='radio'
+                  className='with-gap'
+                  name='status'
+                  value='Needs Attention'
+                />
+                <span>Needs Attention</span>
+              </label>
+            </span>
+            <span>
+              <label>
+                <input
+                  type='radio'
+                  className='with-gap'
+                  name='status'
+                  value='In Progress'
+                />
+                <span>In Progress</span>
+              </label>
+            </span>
+            <span>
+              <label>
+                <input
+                  type='radio'
+                  className='with-gap'
+                  name='status'
+                  value='Resolved'
+                />
+                <span>Resolved</span>
+              </label>
+            </span>
           </div>
         </div>
       </div>
