@@ -6,23 +6,20 @@ import EmployeeSelectOptions from '../employees/EmployeeSelectOptions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EditJobModal = ({ current, updateJob }) => {
-  if (current) {
-    console.log(current);
-  }
+  // if (current) {
+  //   console.log(current);
+  // }
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
-  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     if (current) {
       setTitle(current.title);
-      setDescription(current.description);
+      // setDescription(current.description);
       setStatus(current.status);
       setStatusOption(current.status);
-      setEmployee(current.employee);
-      setHistory(current.history);
     }
   }, [current]);
 
@@ -43,7 +40,8 @@ const EditJobModal = ({ current, updateJob }) => {
       M.toast({ html: `Job updated by ${employee}` });
       // empty fields for form i.e. reset the state
       // setMessage("");
-      // setEmployee("");
+      setDescription('');
+      setEmployee('');
       // setAttention(false);
       // close the modal
       let formModal = document.getElementById('edit-job-modal');
@@ -68,10 +66,8 @@ const EditJobModal = ({ current, updateJob }) => {
   return (
     <div id='edit-job-modal' className='modal' style={modalStyle}>
       <div className='modal-content' style={{ paddingBottom: '0' }}>
-        <h4>Edit System Job</h4>
-        <h5>{title}</h5>
+        <h4>Update Job Details for {title}</h4>
 
-        {/* Job History will go here */}
         <div className='row'>
           <ul className='collection with-header'>
             <li className='collection-header'>
@@ -98,6 +94,8 @@ const EditJobModal = ({ current, updateJob }) => {
               type='text'
               name='description'
               value={description}
+              placeholder='Enter an updated description'
+              ref={(input) => input && input.focus()}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
@@ -120,7 +118,7 @@ const EditJobModal = ({ current, updateJob }) => {
         </div>
 
         <div className='row' style={{ marginBottom: '0' }}>
-          <p style={{ marginTop: '0' }}>Set Status</p>
+          <p style={{ marginTop: '0' }}>Set Updated Status</p>
           <div
             className='input-field'
             style={{ marginBottom: '0' }}
