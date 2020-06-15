@@ -6,6 +6,9 @@ import EmployeeSelectOptions from '../employees/EmployeeSelectOptions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EditJobModal = ({ current, updateJob }) => {
+  // if (current) {
+  //   console.log(current);
+  // }
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
@@ -58,6 +61,10 @@ const EditJobModal = ({ current, updateJob }) => {
     });
   };
 
+  const getDateString = (d) => {
+    return new Date(parseInt(d)).toUTCString().slice(0, -4);
+  };
+
   return (
     <div id='edit-job-modal' className='modal' style={modalStyle}>
       <div className='modal-content' style={{ paddingBottom: '0' }}>
@@ -70,11 +77,18 @@ const EditJobModal = ({ current, updateJob }) => {
             <li className='collection-header'>
               <h5>Job History</h5>
             </li>
-            {/* loop here over all history and produce an li for each one */}
-            <li className='collection-item'>Alvin</li>
-            <li className='collection-item'>Alvin</li>
-            <li className='collection-item'>Alvin</li>
-            <li className='collection-item'>Alvin</li>
+            {current &&
+              current.history.map((item) => {
+                return (
+                  <li className='collection-item' key={item.date}>
+                    <span>{item.description}</span> by{' '}
+                    <span className='black-text'>{item.employee}</span> on{' '}
+                    <span className='black-text'>
+                      {getDateString(item.date)}
+                    </span>
+                  </li>
+                );
+              })}
           </ul>
         </div>
 
