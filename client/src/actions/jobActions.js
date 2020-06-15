@@ -7,7 +7,6 @@ export const getJobs = () => async (dispatch) => {
 
     const res = await axios.get('/jobs/get-all');
     const data = res.data;
-
     dispatch({
       type: 'GET_JOBS',
       payload: data,
@@ -25,9 +24,10 @@ export const addJob = (job) => async (dispatch) => {
     setLoading();
 
     const res = await axios.post('/jobs/create', job);
-    const jobNum = res.data.jobNum;
-    const date = res.data.date;
-    const newJob = { ...job, jobNum, date };
+    // const jobNum = res.data.jobNum;
+    // const date = res.data.date;
+    // const newJob = { ...job, jobNum, date };
+    const newJob = res.data.job;
     dispatch({
       type: 'ADD_JOB',
       payload: newJob,

@@ -10,6 +10,7 @@ const EditJobModal = ({ current, updateJob }) => {
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     if (current) {
@@ -18,6 +19,7 @@ const EditJobModal = ({ current, updateJob }) => {
       setStatus(current.status);
       setStatusOption(current.status);
       setEmployee(current.employee);
+      setHistory(current.history);
     }
   }, [current]);
 
@@ -61,6 +63,21 @@ const EditJobModal = ({ current, updateJob }) => {
       <div className='modal-content' style={{ paddingBottom: '0' }}>
         <h4>Edit System Job</h4>
         <h5>{title}</h5>
+
+        {/* Job History will go here */}
+        <div className='row'>
+          <ul className='collection with-header'>
+            <li className='collection-header'>
+              <h5>Job History</h5>
+            </li>
+            {/* loop here over all history and produce an li for each one */}
+            <li className='collection-item'>Alvin</li>
+            <li className='collection-item'>Alvin</li>
+            <li className='collection-item'>Alvin</li>
+            <li className='collection-item'>Alvin</li>
+          </ul>
+        </div>
+
         <div className='row'>
           <div className='input-field'>
             <input
