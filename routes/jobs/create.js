@@ -44,6 +44,10 @@ router.post('/', async (req, res) => {
       jobNum,
     });
 
+    // now want to complete info for first history item
+    const firstHistory = { description, status, employee, date: job.date };
+    job.history.unshift(firstHistory);
+
     // save the document to the db
     newJob = await job.save();
     // date = res.date;
