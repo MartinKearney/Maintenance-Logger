@@ -30,8 +30,15 @@ router.put('/:jobNum', async (req, res) => {
       return res.status(400).json({ msg: 'A new description must be given' });
     }
 
-    // create history object
-    const historyObject = { description, status, employee, date };
+    const dateOfUpdate = Date.now();
+
+    // create history object - made from the current update
+    const historyObject = {
+      description: newDescription,
+      status: newStatus,
+      employee: newEmployee,
+      date: dateOfUpdate,
+    };
     // insert object to beginning of history array
     history.unshift(historyObject);
 
@@ -41,7 +48,7 @@ router.put('/:jobNum', async (req, res) => {
       status: newStatus,
       employee: newEmployee,
       history,
-      date: Date.now(),
+      date: dateOfUpdate,
     };
 
     // update

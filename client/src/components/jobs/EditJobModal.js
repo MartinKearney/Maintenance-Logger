@@ -6,9 +6,9 @@ import EmployeeSelectOptions from '../employees/EmployeeSelectOptions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EditJobModal = ({ current, updateJob }) => {
-  // if (current) {
-  //   console.log(current);
-  // }
+  if (current) {
+    console.log(current);
+  }
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
