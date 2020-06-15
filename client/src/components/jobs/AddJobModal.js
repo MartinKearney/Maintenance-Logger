@@ -57,7 +57,7 @@ const AddJobModal = ({ addJob }) => {
 
   return (
     <div id='add-job-modal' className='modal' style={modalStyle}>
-      <div className='modal-content'>
+      <div className='modal-content' style={{ paddingBottom: '0' }}>
         <h4>Add System Job</h4>
 
         <div className='row'>
@@ -104,10 +104,11 @@ const AddJobModal = ({ addJob }) => {
           </div>
         </div>
 
-        <div className='row'>
-          <p>Set Status</p>
+        <div className='row' style={{ marginBottom: '0' }}>
+          <p style={{ marginTop: '0' }}>Set Status</p>
           <div
             className='input-field'
+            style={{ marginBottom: '0' }}
             onChange={(e) => setStatus(e.target.value)}
           >
             <span className='status-span'>
