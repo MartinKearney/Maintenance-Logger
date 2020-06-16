@@ -16,7 +16,7 @@ router.delete('/:empNum', async (req, res) => {
 
     // remove employee from database
     await Employee.deleteOne({ employeeNumber: empNum }, function (err) {});
-    res.status(200).json({ msg: 'Employee removed' });
+    res.status(200).json({ msg: 'Employee deleted' });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

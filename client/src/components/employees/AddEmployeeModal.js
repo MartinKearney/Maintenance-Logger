@@ -15,8 +15,8 @@ const AddEmployeeModal = ({ addEmployee }) => {
       M.toast({ html: 'Please enter the first and last name' });
     } else {
       addEmployee({ firstName, lastName });
-      M.toast({ html: `${firstName} ${lastName} was added as an employee` });
-      // empty fields for form i.e. reset the state
+
+      // reset the state
       setFirstName('');
       setLastName('');
 

@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import M from 'materialize-css/dist/js/materialize.min.js';
+
 // Get employees from database
 export const getEmployees = () => async (dispatch) => {
   try {
@@ -15,7 +17,7 @@ export const getEmployees = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'EMPLOYEES_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };
@@ -26,6 +28,15 @@ export const addEmployee = (employee) => async (dispatch) => {
     setLoading();
 
     const res = await axios.post('/employees/create', employee);
+
+    // display response message to user
+    M.toast({
+      html: `${res.data.msg}`,
+    });
+    // check if response has a code field
+    if (res.data.code === 'Fail') {
+      return;
+    }
     // extract employee number from response
     const employeeNumber = res.data.empNum;
     // combine employee with employee number to make the new employee object
@@ -38,7 +49,7 @@ export const addEmployee = (employee) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'EMPLOYEES_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };
@@ -48,7 +59,11 @@ export const deleteEmployee = (employeeNumber) => async (dispatch) => {
   try {
     setLoading();
 
-    await axios.delete(`/employees/delete/${employeeNumber}`);
+    const res = await axios.delete(`/employees/delete/${employeeNumber}`);
+    // display message to user
+    M.toast({
+      html: `${res.data.msg}`,
+    });
 
     dispatch({
       type: 'DELETE_EMPLOYEE',
@@ -57,7 +72,7 @@ export const deleteEmployee = (employeeNumber) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: 'EMPLOYEE_ERROR',
-      payload: err.response.statusText,
+      payload: err.message,
     });
   }
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteEmployee } from '../../actions/employeeActions';
-import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EmployeeItem = ({
   employee: { firstName, lastName, employeeNumber },
@@ -10,7 +9,6 @@ const EmployeeItem = ({
 }) => {
   const onDelete = () => {
     deleteEmployee(employeeNumber);
-    M.toast({ html: 'Employee deleted' });
   };
   return (
     <li className='collection-item'>
