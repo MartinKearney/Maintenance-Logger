@@ -24,12 +24,17 @@ const EditJobModal = ({ current, updateJob }) => {
   }, [current]);
 
   const onSubmit = () => {
-    if (description === '' || employee === '') {
+    if (description === '') {
       // toast displayed and modal stays open
-      M.toast({ html: 'Please enter an updated description and an employee' });
+      M.toast({ html: 'Please enter an updated description' });
+    } else if (
+      description.toLowerCase() === current.history[0].description.toLowerCase()
+    ) {
+      M.toast({ html: 'Please enter a new description' });
+    } else if (employee === '') {
+      M.toast({ html: 'Please enter an employee' });
     } else {
       // form input valid
-
       const updJob = {
         jobNum: current.jobNum,
         description,
@@ -37,12 +42,11 @@ const EditJobModal = ({ current, updateJob }) => {
         employee,
       };
       updateJob(updJob);
-      M.toast({ html: `Job updated by ${employee}` });
-      // empty fields for form i.e. reset the state
-      // setMessage("");
+
+      // reset the state
       setDescription('');
       setEmployee('');
-      // setAttention(false);
+
       // close the modal
       let formModal = document.getElementById('edit-job-modal');
       let instance = M.Modal.getInstance(formModal);

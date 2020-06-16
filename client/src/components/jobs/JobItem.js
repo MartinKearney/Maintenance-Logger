@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 
 import { deleteJob, setCurrent } from '../../actions/jobActions';
 
-import M from 'materialize-css/dist/js/materialize.min.js';
-
 const JobItem = ({
   job,
   job: { jobNum, employee, status, date },
@@ -31,7 +29,6 @@ const JobItem = ({
 
   const onDelete = () => {
     deleteJob(jobNum);
-    M.toast({ html: 'Job Deleted' });
   };
 
   return (

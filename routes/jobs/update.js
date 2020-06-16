@@ -12,10 +12,10 @@ router.put('/:jobNum', async (req, res) => {
     let job = await Job.findOne({
       jobNum: jobNum,
     });
-    if (!job) return res.status(404).json({ msg: 'Job not found' });
+    if (!job) return res.json({ msg: 'Job not found', code: 'Fail' });
 
     // an update request will have description, status, employee
-    // description must be different
+    // description must be different - checked client side
     // status and employee can be different
     // get descritption, status and employee from update request
     const newDescription = req.body.description;
@@ -24,11 +24,6 @@ router.put('/:jobNum', async (req, res) => {
 
     // destructure from existing job record
     const { description, status, employee, history, date } = job;
-
-    // check descriptions differ - is this needed?
-    if (newDescription === description) {
-      return res.status(400).json({ msg: 'A new description must be given' });
-    }
 
     const dateOfUpdate = Date.now();
 
@@ -62,10 +57,10 @@ router.put('/:jobNum', async (req, res) => {
     const newJob = await Job.findOne({ jobNum });
 
     // send the fully updated job back to the client
-    res.json(newJob);
+    res.json({ msg: 'Job updated', newJob });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.json({ msg: 'Server Error - job not updated', code: 'Fail' });
   }
 });
 

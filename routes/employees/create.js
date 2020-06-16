@@ -13,9 +13,7 @@ router.post('/', async (req, res) => {
     // Check if employee exists already
     let employee = await Employee.findOne({ firstName, lastName });
     if (employee) {
-      return res
-        .status(200)
-        .json({ msg: 'Employee already exists', code: 'Fail' });
+      return res.json({ msg: 'Employee already exists', code: 'Fail' });
     }
     // get all employees
     const employees = await Employee.find();
@@ -45,10 +43,10 @@ router.post('/', async (req, res) => {
     await employee.save();
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.json({ msg: 'Failed due to server error', code: 'Fail' });
   }
 
-  return res.status(200).json({
+  return res.json({
     msg: `${firstName} ${lastName} added as an employee`,
     empNum: `${employeeNumber}`,
   });

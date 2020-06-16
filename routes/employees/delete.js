@@ -12,14 +12,14 @@ router.delete('/:empNum', async (req, res) => {
     let employee = await Employee.findOne({
       employeeNumber: empNum,
     });
-    if (!employee) return res.status(404).json({ msg: 'Employee not found' });
+    if (!employee) return res.json({ msg: 'Employee not found', code: 'Fail' });
 
     // remove employee from database
     await Employee.deleteOne({ employeeNumber: empNum }, function (err) {});
-    res.status(200).json({ msg: 'Employee deleted' });
+    res.json({ msg: 'Employee deleted' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.json({ msg: 'Failed due to server error', code: 'Fail' });
   }
 });
 

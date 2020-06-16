@@ -32,7 +32,7 @@ const AddJobModal = ({ addJob }) => {
       };
       // pass new job to redux action from props
       addJob(newJob);
-      M.toast({ html: `Job added by ${employee}` });
+
       // empty form fields i.e. reset the state
       setTitle('');
       setDescription('');

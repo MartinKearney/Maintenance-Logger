@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import M from 'materialize-css/dist/js/materialize.min.js';
+
 //Get Jobs from database
 export const getJobs = () => async (dispatch) => {
   try {
@@ -27,6 +29,7 @@ export const addJob = (job) => async (dispatch) => {
     // const jobNum = res.data.jobNum;
     // const date = res.data.date;
     // const newJob = { ...job, jobNum, date };
+    M.toast({ html: `${res.data.msg}` });
     const newJob = res.data.job;
     dispatch({
       type: 'ADD_JOB',
@@ -45,7 +48,13 @@ export const deleteJob = (jobNum) => async (dispatch) => {
   try {
     setLoading();
 
-    await axios.delete(`/jobs/delete/${jobNum}`);
+    const res = await axios.delete(`/jobs/delete/${jobNum}`);
+    // Display response message to user
+    M.toast({ html: `${res.data.msg}` });
+    // check if response has a code to indicate failure
+    if (res.data.code === 'Fail') {
+      return;
+    }
 
     dispatch({
       type: 'DELETE_JOB',
@@ -65,7 +74,13 @@ export const updateJob = (job) => async (dispatch) => {
     setLoading();
 
     const res = await axios.put(`/jobs/update/${job.jobNum}`, job);
-    const newJob = res.data;
+    // Display response message to user
+    M.toast({ html: `${res.data.msg}` });
+    // check if response has a code to indicate failure
+    if (res.data.code === 'Fail') {
+      return;
+    }
+    const newJob = res.data.newJob;
     dispatch({
       type: 'UPDATE_JOB',
       payload: newJob,

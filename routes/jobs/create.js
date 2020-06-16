@@ -53,9 +53,9 @@ router.post('/', async (req, res) => {
     // date = res.date;
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.send('Job not added due to server error');
   }
-  return res.status(200).json({ msg: 'New Job Created!', job: newJob });
+  return res.json({ msg: 'New job created', job: newJob });
 });
 
 module.exports = router;

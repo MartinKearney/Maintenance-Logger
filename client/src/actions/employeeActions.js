@@ -33,7 +33,7 @@ export const addEmployee = (employee) => async (dispatch) => {
     M.toast({
       html: `${res.data.msg}`,
     });
-    // check if response has a code field
+    // check if response has a code to indicate failure
     if (res.data.code === 'Fail') {
       return;
     }
@@ -64,6 +64,10 @@ export const deleteEmployee = (employeeNumber) => async (dispatch) => {
     M.toast({
       html: `${res.data.msg}`,
     });
+    // check if response has a code to indicate failure
+    if (res.data.code === 'Fail') {
+      return;
+    }
 
     dispatch({
       type: 'DELETE_EMPLOYEE',
