@@ -6,26 +6,22 @@ import EmployeeSelectOptions from '../employees/EmployeeSelectOptions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EditJobModal = ({ current, updateJob }) => {
-  // if (current) {
-  //   console.log(current);
-  // }
-  const [title, setTitle] = useState('');
+  // const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
 
   useEffect(() => {
     if (current) {
-      setTitle(current.title);
+      // setTitle(current.title);
       // setDescription(current.description);
       setStatus(current.status);
-      setStatusOption(current.status);
+      setStatusOption();
     }
   }, [current]);
 
   const onSubmit = () => {
     if (description === '') {
-      // toast displayed and modal stays open
       M.toast({ html: 'Please enter an updated description' });
     } else if (
       description.toLowerCase() === current.history[0].description.toLowerCase()
@@ -54,12 +50,13 @@ const EditJobModal = ({ current, updateJob }) => {
     }
   };
 
-  const setStatusOption = (stat) => {
+  const setStatusOption = () => {
     let options = [...document.getElementsByClassName('status-option')];
     options.forEach((op) => {
-      if (op.value === stat) {
-        op.checked = true;
-      }
+      // if (op.value === stat) {
+      //   op.checked = true;
+      // }
+      op.checked = false;
     });
   };
 
@@ -71,27 +68,7 @@ const EditJobModal = ({ current, updateJob }) => {
   return (
     <div id='edit-job-modal' className='modal' style={modalStyle}>
       <div className='modal-content' style={{ paddingBottom: '0' }}>
-        <h4>Update Job Details for {title}</h4>
-
-        <div className='row'>
-          <ul className='collection with-header'>
-            <li className='collection-header'>
-              <h5>Job History</h5>
-            </li>
-            {current &&
-              current.history.map((item) => {
-                return (
-                  <li className='collection-item' key={item.date}>
-                    <span>{item.description}</span> by{' '}
-                    <span className='black-text'>{item.employee}</span> on{' '}
-                    <span className='black-text'>
-                      {getDateString(item.date)}
-                    </span>
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
+        <h4>Update Log Details</h4>
 
         <div className='row'>
           <div className='input-field'>
@@ -165,11 +142,35 @@ const EditJobModal = ({ current, updateJob }) => {
           </div>
         </div>
       </div>
-      <div className='modal-footer'>
-        {/* modal-close removed from below */}
-        <span onClick={onSubmit} className='btn waves-effect waves-light blue'>
-          Update
+      <div className='modal-footer' style={{ padding: '0 10px 10px' }}>
+        <span
+          onClick={onSubmit}
+          className='btn waves-effect waves-light blue'
+          style={{ marginBottom: '0' }}
+        >
+          Update Log
         </span>
+      </div>
+      <div className='row' style={{ margin: '1rem' }}>
+        <ul className='collection with-header'>
+          <li className='collection-header'>
+            <h5>{current && current.title} - Log History</h5>
+          </li>
+          {current &&
+            current.history.map((item) => {
+              return (
+                <li className='collection-item' key={item.date}>
+                  -->{' '}
+                  <span style={{ fontWeight: 'bold' }}>{item.description}</span>{' '}
+                  <span className='black-text'>
+                    - Updated by {item.employee}
+                  </span>{' '}
+                  on{' '}
+                  <span className='black-text'>{getDateString(item.date)}</span>
+                </li>
+              );
+            })}
+        </ul>
       </div>
     </div>
   );

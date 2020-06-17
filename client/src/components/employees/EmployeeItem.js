@@ -13,7 +13,10 @@ const EmployeeItem = ({
   return (
     <li className='collection-item'>
       <div>
-        {firstName} {lastName}
+        -->{' '}
+        <span style={{ fontWeight: 'bold' }}>
+          {firstName} {lastName}
+        </span>
         <span className='secondary-content delete-icon' onClick={onDelete}>
           <i className='material-icons grey-text'>delete_forever</i>
         </span>

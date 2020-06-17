@@ -59,8 +59,11 @@ const JobItem = ({
         <span className='grey-text'> ({getStatus()})</span>
         <br />
         <span className='black-text'>
-          Last updated by <span className='black-text'>{employee}</span> on{' '}
-          <span className='black-text'>{getDateString()}</span>
+          Last updated by{' '}
+          <span className='black-text' style={{ fontWeight: 'bold' }}>
+            {employee}
+          </span>{' '}
+          on <span className='black-text'>{getDateString()}</span>
         </span>
         <span className='secondary-content delete-icon' onClick={onDelete}>
           <i className='material-icons grey-text'>delete_forever</i>

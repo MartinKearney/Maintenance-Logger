@@ -58,7 +58,7 @@ const AddJobModal = ({ addJob }) => {
   return (
     <div id='add-job-modal' className='modal' style={modalStyle}>
       <div className='modal-content' style={{ paddingBottom: '0' }}>
-        <h4>Add System Job</h4>
+        <h4 style={{ marginBottom: '30px' }}>Add New Log</h4>
 
         <div className='row'>
           <div className='input-field'>
@@ -69,7 +69,7 @@ const AddJobModal = ({ addJob }) => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <label htmlFor='title' className='active'>
-              Job Title
+              Log Title
             </label>
           </div>
         </div>
@@ -83,7 +83,7 @@ const AddJobModal = ({ addJob }) => {
               onChange={(e) => setDescription(e.target.value)}
             />
             <label htmlFor='description' className='active'>
-              Job Description
+              Log Description
             </label>
           </div>
         </div>
@@ -105,7 +105,7 @@ const AddJobModal = ({ addJob }) => {
         </div>
 
         <div className='row' style={{ marginBottom: '0' }}>
-          <p style={{ marginTop: '0' }}>Set Status</p>
+          <p style={{ marginTop: '0' }}>Status</p>
           <div
             className='input-field'
             style={{ marginBottom: '0' }}
@@ -147,10 +147,14 @@ const AddJobModal = ({ addJob }) => {
           </div>
         </div>
       </div>
-      <div className='modal-footer'>
+      <div className='modal-footer' style={{ padding: '0 10px 10px' }}>
         {/* modal-close removed from below */}
-        <span onClick={onSubmit} className='btn waves-effect waves-light blue'>
-          Enter
+        <span
+          onClick={onSubmit}
+          className='btn waves-effect waves-light blue'
+          style={{ marginBottom: '0' }}
+        >
+          Add Log
         </span>
       </div>
     </div>

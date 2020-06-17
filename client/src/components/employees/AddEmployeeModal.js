@@ -29,8 +29,8 @@ const AddEmployeeModal = ({ addEmployee }) => {
 
   return (
     <div id='add-employee-modal' className='modal'>
-      <div className='modal-content'>
-        <h4>New Employee</h4>
+      <div className='modal-content' style={{ paddingBottom: '0' }}>
+        <h4 style={{ marginBottom: '30px' }}>Add New Employee</h4>
 
         <div className='row'>
           <div className='input-field'>
@@ -46,7 +46,7 @@ const AddEmployeeModal = ({ addEmployee }) => {
           </div>
         </div>
 
-        <div className='row'>
+        <div className='row' style={{ paddingBottom: '0' }}>
           <div className='input-field'>
             <input
               type='text'
@@ -60,10 +60,14 @@ const AddEmployeeModal = ({ addEmployee }) => {
           </div>
         </div>
       </div>
-      <div className='modal-footer'>
+      <div className='modal-footer' style={{ padding: '0 10px 10px' }}>
         {/* modal-close removed from below */}
-        <span onClick={onSubmit} className='btn waves-effect waves-light blue'>
-          Enter
+        <span
+          onClick={onSubmit}
+          className='btn waves-effect waves-light blue'
+          style={{ marginBottom: '0' }}
+        >
+          Add Employee
         </span>
       </div>
     </div>
