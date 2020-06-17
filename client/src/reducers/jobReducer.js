@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case 'SEARCH_JOBS':
       return {
         ...state,
-        logs: action.payload,
+        jobs: action.payload,
         loading: false,
       };
     case 'SET_CURRENT':

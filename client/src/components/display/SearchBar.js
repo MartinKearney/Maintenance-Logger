@@ -1,31 +1,47 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { searchJobs } from '../../actions/jobActions';
+import { searchJobs, getJobs } from '../../actions/jobActions';
 
-const Searchbar = ({ searchJobs }) => {
-  const text = useRef('');
+const Searchbar = ({ searchJobs, getJobs }) => {
+  const [text, setText] = useState('');
 
   const onChange = (e) => {
-    searchJobs(text.current.value);
+    if (e.target.value === '') {
+      getJobs();
+    }
+    setText(e.target.value);
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (text !== '') {
+      searchJobs(text);
+    }
+  };
+
+  // const onClickClose = () => {
+  //   setText('');
+  // };
 
   return (
     <nav style={{ marginBottom: '30px' }} className='blue'>
       <div className='nav-wrapper'>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className='input-field'>
             <input
               id='search'
               type='search'
               placeholder='Search logs...'
-              ref={text}
+              value={text}
               onChange={onChange}
             />
             <label className='label-icon' htmlFor='search'>
               <i className='material-icons'>search</i>
             </label>
-            <i className='material-icons'>close</i>
+            {/* <i className='material-icons' onClick={onClickClose}>
+              close
+            </i> */}
           </div>
         </form>
       </div>
@@ -35,6 +51,7 @@ const Searchbar = ({ searchJobs }) => {
 
 Searchbar.propTypes = {
   searchJobs: PropTypes.func.isRequired,
+  getJobs: PropTypes.func.isRequired,
 };
 
-export default connect(null, { searchJobs })(Searchbar);
+export default connect(null, { searchJobs, getJobs })(Searchbar);
