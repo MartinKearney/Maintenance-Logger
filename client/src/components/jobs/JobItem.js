@@ -10,16 +10,29 @@ const JobItem = ({
   deleteJob,
   setCurrent,
 }) => {
-  const getTextColor = () => {
+  const getBackColor = () => {
     switch (status) {
       case 'Needs Attention':
-        return 'red-text';
+        return 'red';
       case 'In Progress':
-        return 'orange-text';
+        return 'green';
       case 'Resolved':
-        return 'green-text';
+        return 'blue';
       default:
-        return 'black-text';
+        return 'black';
+    }
+  };
+
+  const getStatus = () => {
+    switch (status) {
+      case 'Needs Attention':
+        return 'needs attention';
+      case 'In Progress':
+        return 'in progress';
+      case 'Resolved':
+        return 'resolved';
+      default:
+        return '';
     }
   };
 
@@ -36,19 +49,20 @@ const JobItem = ({
       <div>
         <a
           href='#edit-job-modal'
-          className={`modal-trigger ${getTextColor()}`}
+          className={`modal-trigger white-text ${getBackColor()}`}
           onClick={() => setCurrent(job)}
+          style={{ padding: '2px 4px' }}
         >
           {job.title}
         </a>
+        <span className='grey-text'> ({getStatus()})</span>
         <br />
-        <span className='grey-text'>
-          <span className='black-text'>ID #{jobNum}</span> last updated by{' '}
-          <span className='black-text'>{employee}</span> on{' '}
+        <span className='black-text'>
+          Last updated by <span className='black-text'>{employee}</span> on{' '}
           <span className='black-text'>{getDateString()}</span>
         </span>
         <span className='secondary-content delete-icon' onClick={onDelete}>
-          <i className='material-icons grey-text'>delete</i>
+          <i className='material-icons grey-text'>delete_forever</i>
         </span>
       </div>
     </li>
