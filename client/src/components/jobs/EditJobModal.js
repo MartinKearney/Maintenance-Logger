@@ -64,7 +64,8 @@ const EditJobModal = ({ current, updateJob }) => {
   };
 
   const getDateString = (d) => {
-    return new Date(parseInt(d)).toUTCString().slice(0, -4);
+    const rawDate = new Date(parseInt(d)).toUTCString();
+    return rawDate.slice(0, -13) + ' at ' + rawDate.slice(-12);
   };
 
   return (

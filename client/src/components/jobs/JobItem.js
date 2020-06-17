@@ -37,7 +37,8 @@ const JobItem = ({
   };
 
   const getDateString = () => {
-    return new Date(parseInt(date)).toUTCString().slice(0, -4);
+    const rawDate = new Date(parseInt(date)).toUTCString();
+    return rawDate.slice(0, -13) + ' at ' + rawDate.slice(-12);
   };
 
   const onDelete = () => {
