@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Tippy from '@tippyjs/react';
 import { connect } from 'react-redux';
 
 import { deleteJob, setCurrent } from '../../actions/jobActions';
@@ -65,9 +66,11 @@ const JobItem = ({
           </span>{' '}
           on <span className='black-text'>{getDateString()}</span>
         </span>
-        <span className='secondary-content delete-icon' onClick={onDelete}>
-          <i className='material-icons grey-text'>delete_forever</i>
-        </span>
+        <Tippy content='Delete' placement='left' delay={(250, 100)}>
+          <span className='secondary-content delete-icon' onClick={onDelete}>
+            <i className='material-icons grey-text'>delete</i>
+          </span>
+        </Tippy>
       </div>
     </li>
   );
