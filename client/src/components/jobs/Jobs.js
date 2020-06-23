@@ -24,8 +24,10 @@ const Jobs = ({ job: { jobs, loading }, getJobs }) => {
   }
   return (
     <ul className='collection with-header'>
-      <li className='collection-header'>
-        <h4 className='center'>Maintenance Logs</h4>
+      <li className='collection-header' style={{ backgroundColor: '#eee' }}>
+        <h4 className='center' style={{ textDecoration: 'underline' }}>
+          Maintenance Logs
+        </h4>
       </li>
       {!loading && jobs.length === 0 ? (
         <p className='center'>No logs to show...</p>
