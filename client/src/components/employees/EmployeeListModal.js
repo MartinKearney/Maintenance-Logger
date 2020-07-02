@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 import { getEmployees } from '../../actions/employeeActions';
 
-// Not a good idea to use a pre-loader in a modal?
-// import Preloader from '../layout/Preloader';
 import EmployeeItem from './EmployeeItem';
 
 const EmployeeListModal = ({

@@ -6,15 +6,12 @@ import EmployeeSelectOptions from '../employees/EmployeeSelectOptions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const EditJobModal = ({ current, updateJob }) => {
-  // const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
   const [employee, setEmployee] = useState('');
 
   useEffect(() => {
     if (current) {
-      // setTitle(current.title);
-      // setDescription(current.description);
       setStatus(current.status);
       setStatusOption();
     }
@@ -53,9 +50,6 @@ const EditJobModal = ({ current, updateJob }) => {
   const setStatusOption = () => {
     let options = [...document.getElementsByClassName('status-option')];
     options.forEach((op) => {
-      // if (op.value === stat) {
-      //   op.checked = true;
-      // }
       op.checked = false;
     });
   };
@@ -160,7 +154,7 @@ const EditJobModal = ({ current, updateJob }) => {
             current.history.map((item) => {
               return (
                 <li className='collection-item' key={item.date}>
-                  -->{' '}
+                  --&gt;{' '}
                   <span style={{ fontWeight: 'bold' }}>{item.description}</span>{' '}
                   <span className='black-text'>
                     - Updated by {item.employee}

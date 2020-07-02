@@ -20,10 +20,6 @@ const Searchbar = ({ searchJobs, getJobs }) => {
     }
   };
 
-  // const onClickClose = () => {
-  //   setText('');
-  // };
-
   return (
     <nav style={{ marginBottom: '30px' }} className='blue'>
       <div className='nav-wrapper'>
@@ -39,9 +35,6 @@ const Searchbar = ({ searchJobs, getJobs }) => {
             <label className='label-icon' htmlFor='search'>
               <i className='material-icons'>search</i>
             </label>
-            {/* <i className='material-icons' onClick={onClickClose}>
-              close
-            </i> */}
           </div>
         </form>
       </div>

@@ -26,9 +26,6 @@ export const addJob = (job) => async (dispatch) => {
     setLoading();
 
     const res = await axios.post('/jobs/create', job);
-    // const jobNum = res.data.jobNum;
-    // const date = res.data.date;
-    // const newJob = { ...job, jobNum, date };
     M.toast({ html: `${res.data.msg}` });
     const newJob = res.data.job;
     dispatch({

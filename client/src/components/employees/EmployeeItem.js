@@ -14,7 +14,7 @@ const EmployeeItem = ({
   return (
     <li className='collection-item'>
       <div>
-        -->{' '}
+        --&gt;{' '}
         <span style={{ fontWeight: 'bold' }}>
           {firstName} {lastName}
         </span>

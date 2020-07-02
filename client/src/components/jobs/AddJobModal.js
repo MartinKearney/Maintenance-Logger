@@ -148,7 +148,6 @@ const AddJobModal = ({ addJob }) => {
         </div>
       </div>
       <div className='modal-footer' style={{ padding: '0 10px 10px' }}>
-        {/* modal-close removed from below */}
         <span
           onClick={onSubmit}
           className='btn waves-effect waves-light blue'
