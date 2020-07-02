@@ -6,4 +6,5 @@ const employeeSchema = new mongoose.Schema({
   employeeNumber: Number,
 });
 
+// A collection called 'employees' is created
 module.exports = mongoose.model('Employee', employeeSchema);

@@ -10,18 +10,8 @@ connectDB();
 // Initialise middleware
 app.use(express.json({ extended: false }));
 
-// Define API endpoints
+// Define API route handler
 app.use('/', require('./routes'));
-// // Employee endpoints
-// app.use('/employees', require('./routes/employees/index'));
-// app.use('/employee/create', require('./routes/employees/create'));
-// app.use('/employee/delete', require('./routes/employees/delete'));
-
-// // Job endpoints
-// app.use('/jobs/', require('./routes/jobs/index'));
-// app.use('/job/create', require('./routes/jobs/create'));
-// app.use('/job/update', require('./routes/jobs/update'));
-// app.use('/job/delete', require('./routes/jobs/delete'));
 
 // Serve static assets in production i.e. React
 if (process.env.NODE_ENV === 'production') {

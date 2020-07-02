@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// make environment variables available as key-value
-// pairs in 'process.env'.
+// make environment variables available via process.env
 require('dotenv').config();
 
 // want to use env var instead

@@ -10,5 +10,5 @@ const jobSchema = new mongoose.Schema({
   date: { type: String, default: Date.now },
 });
 
-// Check that a collection called 'jobs' is created
+// A collection called 'jobs' is created
 module.exports = mongoose.model('Job', jobSchema);

@@ -11,8 +11,8 @@ router.get('/:text', async (req, res) => {
     const queryObj2 = {};
     queryObj2['employee'] = new RegExp(req.params.text, 'i');
 
-    const results = await Job.find({ $or: [queryObj, queryObj2] });
     // const results = await Job.find(queryObj);
+    const results = await Job.find({ $or: [queryObj, queryObj2] });
 
     res.json(results);
   } catch (err) {

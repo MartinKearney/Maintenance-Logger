@@ -10,8 +10,6 @@ router.post('/', async (req, res) => {
   const { title, description, status, employee } = req.body;
   let jobNum, newJob;
   try {
-    // check if job already exists? maybe not needed!
-
     // construct remaining fields for job creation
     const history = [];
 
