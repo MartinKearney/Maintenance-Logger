@@ -25,7 +25,10 @@ const Jobs = ({ job: { jobs, loading }, getJobs }) => {
   return (
     <ul className='collection with-header'>
       <li className='collection-header' style={{ backgroundColor: '#eee' }}>
-        <h4 className='center' style={{ textDecoration: 'underline' }}>
+        <h4
+          className='center'
+          style={{ textDecoration: 'underline', color: '#666' }}
+        >
           Maintenance Logs
         </h4>
       </li>

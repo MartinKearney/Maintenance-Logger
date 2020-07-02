@@ -8,11 +8,9 @@ const app = express();
 connectDB();
 
 // Initialise middleware
-// allows us to accept json data into the API
 app.use(express.json({ extended: false }));
 
 // Define API endpoints
-
 app.use('/', require('./routes'));
 // // Employee endpoints
 // app.use('/employees', require('./routes/employees/index'));
